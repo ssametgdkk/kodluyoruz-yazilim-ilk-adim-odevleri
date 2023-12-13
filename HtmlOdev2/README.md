@@ -1,2 +1,2 @@
 # HtmlOdev1
-Kodluyoruz Eğitimi kapsamında Html 1. Ödev
+Kodluyoruz Eğitimi kapsamında Html 2. Ödev
