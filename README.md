@@ -1,2 +1,1 @@
-# kodluyoruz-yazilim-ilk-adim-odevleri
-Kodluyoruz Eğitimi kapsamında açtığım ödev reposu
+Merhaba bu repoda kodluyoruz eğitimi bünyesi altında yaptığım ödevleri yayınlayacağım.
