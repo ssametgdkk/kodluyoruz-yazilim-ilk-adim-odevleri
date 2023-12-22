@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samet Gödek</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: monospace;
+            background-color: gray;
+            display: grid;
+        }
+
+        .navbar {
+            position: fixed;
+            background-color: #88AB8E;
+            font-weight: 400;
+            font-size: 0;
+            display: flex;
+            width: 100%;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #0A2647;
+        }
+
+        .navbar .navbar-item {
+            font-size: 0.8rem;
+            display: inline-block;
+            position: relative;
+            padding: 0 100px;
+            cursor: pointer;
+            z-index: 5;
+            min-width: 25%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar .navbar-item:hover {
+            border-bottom: 5px solid #0A2647;
+        }
+
+        .navbar .textlogo {
+            font-family: 'Pacifico', cursive;
+            color: #0A2647;
+            font-size: 10px;
+            font-weight: 700;
+            min-width: 25%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .container .left-bar {
+            width: 25%;
+            min-width: 25%;
+            min-height: 100vh;
+            background-color: #AFC8AD;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .left-bar .profile-photo:hover {
+            animation: shake 0.5s ease-in-out;
+            cursor: pointer;
+            transform: scale(1.02);
+        }
+
+        .left-bar .name {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            color: #0A2647;
+        }
+
+        .left-bar .bio {
+            color: #12161f;
+            margin-top: 1px;
+            font-size: 1rem;
+        }
+
+        .container .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            font-size: 2rem;
+            text-decoration: underline;
+            color: #12161f;
+            padding-top: 100px;
+            text-align: center;
+        }
+
+        .main-content p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #12161f;
+        }
+
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .main-content .card {
+            margin: 5px;
+            width: 290px;
+            max-width: 290px;
+            height: 90px;
+            background-color: #B2A4FF;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            backdrop-filter: blur(10px);
+            transition: 0.5s ease-in-out;
+        }
+
+        .main-content .card:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+
+        .main-content .card .card-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-left: 10px;
+            border-radius: 10px;
+            background-color: #EEE7DA;
+        }
+
+        .main-content .card .card-textbox {
+            width: calc(100% - 90px);
+            margin-left: 10px;
+            color: #0A2647;
+        }
+
+        .main-content .card .card-textbox .header-text {
+            font-size: 16px;
+        }
+
+        .main-content .card .card-textbox .body-text {
+            font-size: 12px;
+            color: #12161f;
+        }
+
+        .main-content .skills-card {
+            margin: 5px;
+            width: 150px;
+            height: 200px;
+            background-color: #B2A4FF;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: 0.5s ease-in-out;
+        }
+
+        .main-content .skills-card:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+
+        .main-content .skills-card .skills-img {
+            width: 125px;
+            height: 125px;
+            margin-top: 50px;
+            object-fit: cover;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background-color: #0A2647;
+            margin-top: 10px;
+        }
+
+        .main-content .skills-card .skills-img img {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .main-content .skills-card .skills-text {
+            font-size: 1rem;
+            color: #0A2647;
+        }
+
+        /*###### İLETİŞİM CONTAİNER ########*/
+
+        .iletisimContainer {
+            padding-top: 80px;
+            margin-left: 20px;
+            margin-right: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .iletisimContainer h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .iletisimContainer #mainimg {
+            width: 500px;
+            float: left;
+            margin-top: 10px;
+        }
+
+        /*######### DİV1 #########*/
+
+        .iletisimContainer #div1 {
+            width: 250px;
+            height: 200px;
+            background-color: #c7bff7;
+            margin-top: 30px;
+            float: left;
+            margin-left: 10px;
+            border-radius: 30px;
+        }
+
+        .iletisimContainer #div1 a {
+            padding-left: 40px;
+            color: #0A2647;
+            text-decoration: none;
+
+        }
+
+        .iletisimContainer #div1 a:hover {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #div1 h2 {
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        #div1 p {
+            padding: 20px;
+        }
+
+        /*####### DİV2 ########*/
+
+        .iletisimContainer #div2 {
+            width: 250px;
+            height: 200px;
+            background-color: #c7bff7;
+            margin-top: 230px;
+            float: left;
+            margin-left: 10px;
+            margin-bottom: 30px;
+            border-radius: 30px;
+        }
+
+        .iletisimContainer #div2 a {
+            padding-left: 80px;
+            color: #0A2647;
+            text-decoration: none;
+        }
+
+        .iletisimContainer #div2 a:hover {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #div2 h2 {
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        /*############ KEYFİ İMG #########*/
+        #keyfimg1 {
+            width: 500px;
+        }
+
+        #keyfimg2 {
+            width: 500px;
+            margin-left: 40%;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #fff;
+            background-color: #061208;
+        }
+
+        #div1img {
+            width: 30px;
+            background-color: #12161f;
+            margin: auto;
+            padding: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="textlogo">
+            <a href="index.html">
+                <h1>SSAMETGDKK</h1>
+            </a>
+        </div>
+        <a href="index.html" class="navbar-item">Anasayfa</a>
+        <a href="#contact.html" class="navbar-item">İletişim</a>
+    </nav>
+    <div class="container">
+        <div class="left-bar">
+            <!-- <img src="https://cdn.discordapp.com/attachments/800009379868180494/1177386399612272710/profile-pic.png?ex=65725188&is=655fdc88&hm=98eb78104193862871613521b15251822344c4062c7299ff5d2d7b68c3ee7840&" -->
+            <img src="images/sametbitmojı.png" alt="" class="profile-photo">
+            <h2 class="name">Samet Gödek</h2>
+            <p class="bio">Software Developer</p>
+        </div>
+        <div class="main-content">
+            <br>
+            <h1>Ben kimim?</h1>
+            <p>Merhaba! 👋 Benim adım Samet, ve Türkiye'den genç bir geliştiriciyim. Makine ve teknolojileri alanında
+                liseyi okul
+                birincisi olarak bitirdim. İstanbul Üniversitesi'nde Bilgisayar Programcılığı okumaya başladım. Şu anda
+                web geliştirme
+                konusundaki yeteneklerimi geliştirmeye odaklanıyorum. Yetenekli bir geliştirici olmayı ve ileride
+                Front-end'den
+                back-end'e, full-stack gibi seviyelere gelmeyi hedefliyorum.
+
+                Programlamaya genç yaşta bir hobi olarak başladım. Ayrıca, aktif olarak taekwondo sporu ile
+                ilgileniyorum.
+                <br>
+                Sevgiler 😊
+            </p>
+        </div>
+    </div>
+    <div class="iletisimContainer" id="contact.html">
+        <h1>İLETİŞİM</h1>
+        <img src="images/contactiçin.png" alt="" id="mainimg">
+        <div id="div1">
+            <h2>GMAİL</h2><br><br>
+            <a href="mailto:ssametgdkk@gmail.com">ssametgdkk@gmail.com</a>
+        </div>
+        <div id="div2">
+            <h2>İNSTAGRAM</h2><br><br>
+            <a href="https://www.instagram.com/ssametgdkk/">ssametgdkk</a>
+        </div>
+    </div>
+    <div id="keyfimg1">
+        <img src="images/sonsonson.png" alt="" width="500px">
+    </div>
+    <div id="keyfimg2">
+        <img src="images/dumbbell.png" alt="" width="500px">
+    </div>
+    <footer>
+        <p>Tüm hakları saklıdır.</p>
+    </footer>
+</body>
+
+</html>
